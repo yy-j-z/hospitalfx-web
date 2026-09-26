@@ -10,8 +10,18 @@
 
 文档索引：
 
-- `team-task-assignment.md`：三名队友和你的任务边界。
+- `api-contract.md`：**接口契约（唯一字段依据）**。队友二第一个交付物，定下后前端和 AI 才能并行开工。
+- `team-task-assignment.md`：分支策略、文件地盘、四人任务清单和验收标准。
 - `development-contract.md`：分支、提交、数据库、API 和联调规范。
 - `neural-network-plan.md`：图片识别、OCR、训练评估和服务接口方案。
 - `github-publish-guide.md`：仓库迁移和首次推送步骤。
 - `teammate-ai-prompts.md`：可直接复制给队友 AI 的任务提示词。
+
+分支对应关系：
+
+- `main`：稳定、可演示版本，只接受集成负责人从 `develop` 合并
+- `develop`：集成测试版本，所有人的 Pull Request 都提到这里
+- `feature/neural` → 你 · 神经网络与 AI
+- `feature/android` → 队友一 · 安卓与移动端
+- `feature/backend-medication` → 队友二 · 后端、药品数据与知识库
+- `feature/frontend-refactor` → 队友三 · 前端页面与联调
