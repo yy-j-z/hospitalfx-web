@@ -10,7 +10,7 @@ $ErrorActionPreference = "Stop"
 
 $backendRoot = Split-Path -Parent $PSScriptRoot
 $schemaPath = Join-Path $backendRoot "src\main\resources\schema.sql"
-$dataPath = Join-Path $backendRoot "src\main\resources\data.sql"
+$dataPath = Join-Path $backendRoot "src\main\resources\demo-data.sql"
 
 $mysqlCandidates = @(
     (Get-Command mysql.exe -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source -ErrorAction SilentlyContinue),

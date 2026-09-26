@@ -11,10 +11,10 @@
     </parent>
 
     <groupId>com.hospitalfx</groupId>
-    <artifactId>hospitalfx-backend</artifactId>
+    <artifactId>rongchengyishu-backend</artifactId>
     <version>1.0.0</version>
-    <name>hospitalfx-backend</name>
-    <description>HospitaFX Spring Boot backend</description>
+    <name>rongchengyishu-backend</name>
+    <description>Rongcheng Yishu Spring Boot backend</description>
 
     <properties>
         <java.version>17</java.version>
@@ -37,6 +37,11 @@
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
         <dependency>

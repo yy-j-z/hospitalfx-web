@@ -14,6 +14,7 @@ public class PatientProfileRepository {
         profile.setUserId(rs.getInt("user_id"));
         profile.setPatientName(rs.getString("patient_name"));
         profile.setGender(rs.getString("gender"));
+        profile.setPhoneNumber(rs.getString("phone_number"));
         profile.setCardNumber(rs.getString("card_number"));
         profile.setBirthdate(rs.getString("birthdate"));
         profile.setAge(rs.getInt("age"));
@@ -33,8 +34,17 @@ public class PatientProfileRepository {
 
     public void save(PatientProfile profile) {
         jdbcTemplate.update("""
-            INSERT INTO tb_patient_profile(user_id, patient_name, gender, card_number, birthdate, age, home_address)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
-            """, profile.getUserId(), profile.getPatientName(), profile.getGender(), profile.getCardNumber(), profile.getBirthdate(), profile.getAge(), profile.getHomeAddress());
+            INSERT INTO tb_patient_profile(user_id, patient_name, gender, phone_number, card_number, birthdate, age, home_address)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+            """,
+            profile.getUserId(),
+            profile.getPatientName(),
+            profile.getGender(),
+            profile.getPhoneNumber(),
+            profile.getCardNumber(),
+            profile.getBirthdate(),
+            profile.getAge(),
+            profile.getHomeAddress()
+        );
     }
 }

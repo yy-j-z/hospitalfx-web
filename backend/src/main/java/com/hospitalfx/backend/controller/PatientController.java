@@ -49,6 +49,7 @@ public class PatientController {
         profile.setUserId(userId);
         profile.setPatientName(request.realName());
         profile.setGender(request.gender());
+        profile.setPhoneNumber(request.phoneNumber());
         profile.setCardNumber(request.cardNumber().toUpperCase());
         profile.setBirthdate(request.birthdate());
         profile.setAge(request.age());

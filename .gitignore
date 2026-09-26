@@ -5,8 +5,25 @@ Thumbs.db
 .idea/
 .vscode/
 *.log
+*.err
+*.out
+~$*.docx
 .env
 .env.local
 backend/.env.local
 backend/target/
 backend/logs/
+backend/data/
+*.mv.db
+*.trace.db
+.codex-runtime/
+
+# Neural-network service runtime files
+ai-service/.venv/
+ai-service/**/__pycache__/
+ai-service/.env
+ai-service/uploads/
+ai-service/runs/
+ai-service/datasets/raw/
+ai-service/models/*.pt
+ai-service/models/*.onnx

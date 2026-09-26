@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>蓉城医枢 - 详细信息</title>
+  <style>
+    :root {
+      color-scheme: light;
+      color: #0f172a;
+      background: #f0f4fb;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top center, rgba(117, 143, 235, 0.18), transparent 26%),
+        linear-gradient(180deg, #eff4fb 0%, #ffffff 45%, #f5f7fb 100%);
+      color: #0f172a;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(236, 245, 255, 0.35), transparent 40%),
+        radial-gradient(circle at 80% 10%, rgba(3, 102, 214, 0.12), transparent 18%);
+      pointer-events: none;
+    }
+
+    .page-shell {
+      position: relative;
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 24px 72px;
+      min-height: 100vh;
+      display: flex;
+      align-items: start;
+      justify-content: center;
+    }
+
+    .article-card {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      border-radius: 32px;
+      box-shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+    }
+
+    .article-card__inner {
+      padding: 40px 44px;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 28px;
+      color: #1d4ed8;
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+
+    .back-link:hover,
+    .back-link:focus-visible {
+      text-decoration: underline;
+    }
+
+    .article-header {
+      display: grid;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .article-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(59, 130, 246, 0.12);
+      color: #1d4ed8;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      width: fit-content;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 2.6vw, 3.2rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #0f172a;
+    }
+
+    .subtitle {
+      margin: 0;
+      max-width: 760px;
+      color: #475569;
+      font-size: 1.05rem;
+      line-height: 1.8;
+    }
+
+    .article-content {
+      display: grid;
+      gap: 22px;
+    }
+
+    .article-content p {
+      margin: 0;
+      line-height: 1.85;
+      font-size: 1.02rem;
+      color: #334155;
+      padding: 0 2px;
+    }
+
+    .article-content p + p {
+      margin-top: 12px;
+    }
+
+    .article-section {
+      padding: 24px;
+      border-radius: 28px;
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(59, 130, 246, 0.18);
+      box-shadow: 0 20px 40px rgba(59, 130, 246, 0.08);
+    }
+
+    .article-section h2 {
+      margin: 0 0 16px;
+      font-size: 1.1rem;
+      color: #0f172a;
+      letter-spacing: 0.01em;
+    }
+
+    .article-section__body {
+      padding: 20px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      display: grid;
+      gap: 0;
+    }
+
+    .article-section ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 0;
+    }
+
+    .article-section li {
+      padding: 18px 16px;
+      border-bottom: 1px solid rgba(15, 23, 42, 0.08);
+      background: transparent;
+      color: #334155;
+      line-height: 1.75;
+    }
+
+    .article-section li:last-child {
+      border-bottom: none;
+    }
+
+    .article-content strong {
+      color: #0f172a;
+    }
+
+    .fallback {
+      padding: 26px;
+      background: #f8fafc;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 20px;
+      color: #0f172a;
+      line-height: 1.8;
+      box-shadow: inset 0 0 0 1px rgba(147, 197, 253, 0.12);
+    }
+
+    @media (max-width: 780px) {
+      .page-shell {
+        padding: 32px 16px 48px;
+      }
+      .article-card__inner {
+        padding: 28px 22px;
+      }
+      .back-link {
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-shell">
+    <article class="article-card">
+      <div class="article-card__inner">
+        <a class="back-link" href="/">← 返回首页</a>
+        <div class="article-header">
+          <span class="article-badge">详情介绍</span>
+          <h1 id="title">页面加载中...</h1>
+          <p class="subtitle" id="subtitle">请选择一个入口查看详细信息。</p>
+        </div>
+        <div class="article-content" id="content"></div>
+      </div>
+    </article>
+  </div>
+  <script>
+    const articles = {
+      "drug-interaction": {
+        title: "药物相互作用筛查与冲突预警流程",
+        subtitle: "提供多重规则筛查、冲突提醒与用药安全建议。",
+        paragraphs: [
+          "本模块通过分析患者用药方案中的药物成分与已知相互作用，自动提示可能的冲突风险。",
+          "当检测到冲突时，系统会展示潜在危险等级、建议的替代方案以及与医生、药师的协同审查流程。",
+          "该功能适用于门诊开方、药房配药和患者用药管理，帮助医院提升用药安全性。"
+        ],
+        highlights: [
+          "实时检测药物相互作用，覆盖常见处方与慢病用药组合。",
+          "支持风险分级提示，帮助临床人员快速识别高危方案。",
+          "可生成审核建议，方便医生与药师协同处理。"
+        ],
+        scenarios: [
+          "门诊处方开立后自动检查药物相互作用。",
+          "药房配药环节中提示潜在冲突并标记高风险处方。",
+          "患者用药史录入后为后续复诊提供参考。"
+        ]
+      },
+      "medication-checkin": {
+        title: "服药计划打卡与患者依从性记录",
+        subtitle: "支持每日服药提醒、打卡记录与依从性分析。",
+        paragraphs: [
+          "患者可以通过平台记录每次服药情况，系统自动生成服药计划与提醒提醒。",
+          "医护人员可实时查看患者依从性数据，识别漏服、错服等风险。",
+          "该模块帮助建立闭环式随访管理，提升慢病用药效果和患者安全。"
+        ],
+        highlights: [
+          "按时打卡记录每次服药，生成用药依从性报表。",
+          "支持多时段、多药品的复杂服药计划设置。",
+          "可与随访服务结合，形成持续用药管理闭环。"
+        ],
+        scenarios: [
+          "慢病患者按方案记录每日服药情况。",
+          "护理人员通过平台查看依从性趋势并调整指导。",
+          "患者可获得自动提醒，减少漏服风险。"
+        ]
+      },
+      "prescription-review": {
+        title: "医生、药师协同处方审核",
+        subtitle: "实现处方开立与药师审核的协同闭环。",
+        paragraphs: [
+          "医生开方后，药师可基于电子处方和药物冲突规则进行同步审核。",
+          "系统支持审核意见回传、风险提示和处方修改建议，确保处方安全可行。",
+          "该协同流程有助于降低不合理用药、提升处方质量与患者安全。"
+        ],
+        highlights: [
+          "处方审核过程可视化，审方意见可记录于系统内。",
+          "支持药师添加审批建议并反馈给开方医生。",
+          "减少不合理处方和重复用药的发生。"
+        ],
+        scenarios: [
+          "医生完成处方后自动进入药师审核流程。",
+          "药师在审核界面同时查看药物冲突与用药史。",
+          "审核结果可直接反馈至门诊工作站。"
+        ]
+      },
+      "smart-pharmacy": {
+        title: "智慧药房库存与发药联动",
+        subtitle: "药房发药流程与库存管理实现实时联动。",
+        paragraphs: [
+          "系统将处方状态、药品出库与库存数量实时同步，避免配药延误与库存异常。",
+          "药师在发药过程中可查看库存预警、批次信息和补货建议。",
+          "该功能提升药房工作效率，确保药品发放与库存数据的一致性。"
+        ],
+        highlights: [
+          "处方、库存和发药状态在同一界面实时展示。",
+          "库存预警帮助药师提前补货，避免缺药。",
+          "发药流程与药房管理系统联动，减少人工查找。"
+        ],
+        scenarios: [
+          "药房发药环节自动检查库存并提示批次信息。",
+          "出现缺货时系统自动发出补货建议。",
+          "药师可在流程中确认发药并生成发放记录。"
+        ]
+      },
+      "ai-guidance": {
+        title: "AI 辅助导诊与随访建议",
+        subtitle: "基于智能分析提供就诊导向与后续随访建议。",
+        paragraphs: [
+          "平台可根据患者主诉、既往史和预约类别，推荐最合适的就诊科室与流程。",
+          "AI 模块还会生成随访建议，帮助医护人员开展服药指导和复诊安排。",
+          "该功能旨在提升患者就诊体验与医疗协同效率。"
+        ],
+        highlights: [
+          "智能推荐科室与就诊路径，减少患者等待和迷茫。",
+          "自动生成随访建议，支持长期用药管理。",
+          "结合既往病史和用药记录，提高诊疗匹配度。"
+        ],
+        scenarios: [
+          "患者预约前系统推荐最合适的诊疗科室。",
+          "诊后随访建议自动推送给医生和患者。",
+          "慢病管理中智能提醒复诊和服药随访。"
+        ]
+      },
+      "notice-drug-conflict": {
+        title: "药物冲突提醒模块进入公众体验阶段",
+        subtitle: "面向患者和家属开放药物安全体验功能。",
+        paragraphs: [
+          "该公告说明药物冲突提醒模块已进入公众体验阶段，患者可通过平台了解用药风险。",
+          "系统将展示常见药物冲突场景，并提供安全用药提示。",
+          "后续将继续优化规则库和提示说明，增强用户对用药安全的认知。"
+        ],
+        highlights: [
+          "展示常见药物冲突警示场景，帮助患者提前识别风险。",
+          "提供安全用药建议，帮助患者更好地配合医生用药。",
+          "增强公众对药物安全的认知和用药依从性。"
+        ],
+        scenarios: [
+          "患者在查询用药时获取冲突提醒说明。",
+          "家属通过平台了解药物搭配风险。",
+          "社区健康宣教中引用该模块作为用药安全示例。"
+        ]
+      },
+      "notice-medication-checkin": {
+        title: "患者服药打卡服务支持每日依从性记录",
+        subtitle: "记录服药情况，提升慢病管理与患者依从性。",
+        paragraphs: [
+          "患者可借助打卡功能记录每日服药情况，平台生成依从性统计。",
+          "医护人员可以基于统计结果安排随访和用药干预。",
+          "这一服务有助于形成患者、医生和药师之间的闭环协同。"
+        ],
+        highlights: [
+          "生成每日服药打卡记录，帮助患者养成用药习惯。",
+          "为医护团队提供依从性分析与干预依据。",
+          "结合提醒机制降低漏服、误服风险。"
+        ],
+        scenarios: [
+          "患者使用打卡功能记录长期用药情况。",
+          "医师查看依从性报告后优化治疗方案。",
+          "护理团队根据记录安排家庭随访。"
+        ]
+      },
+      "notice-smart-pharmacy": {
+        title: "智慧药房流程已联动处方、库存与发药状态",
+        subtitle: "药房整个流程实现一体化展示与管理。",
+        paragraphs: [
+          "公告介绍了智慧药房流程与处方审核、库存管理、发药状态的联动情况。",
+          "通过实时状态同步，院内各角色可共享同一药品信息。",
+          "该联动提升了药房作业效率，并降低了错误发药风险。"
+        ],
+        highlights: [
+          "处方、库存、发药状态三个环节实现可视化联动。",
+          "协同信息共享提高药房与门诊的工作效率。",
+          "避免了重复查询与人工数据校对。"
+        ],
+        scenarios: [
+          "药师在发药前一键查看处方与库存状态。",
+          "库存异常时系统自动提醒并生成处理建议。",
+          "发药完成后自动更新患者取药记录。"
+        ]
+      },
+      "medical-news-medication-rule": {
+        title: "用药提醒规则支持多时段服药计划",
+        subtitle: "为复杂用药方案提供更灵活的提醒设置。",
+        paragraphs: [
+          "该功能支持多时段、分次服药计划，让患者按方案服药更方便。",
+          "系统可生成详细提醒时间和说明，减少漏服与误服。",
+          "这有助于提高长期用药依从性和治疗效果。"
+        ],
+        highlights: [
+          "支持复杂用药方案的多时段提醒设置。",
+          "自动生成每日服药计划与用药说明。",
+          "帮助患者按疗程按时服药，减少错误用药。"
+        ],
+        scenarios: [
+          "慢病患者通过系统管理全天候用药计划。",
+          "患者收到按时服药提醒并完成打卡。",
+          "医生根据依从性反馈调整用药安排。"
+        ]
+      },
+      "medical-news-smart-pharmacy": {
+        title: "智慧药房工作台已联动处方、库存与发药状态",
+        subtitle: "药房工作台可直接展示处方与库存关联信息。",
+        paragraphs: [
+          "该新闻指出药房工作台已经实现与处方系统和库存系统联动。",
+          "发药人员可以查看药品库存、处方审核状态和发药进度。",
+          "该联动使药房操作更透明，减少流程等待。"
+        ],
+        highlights: [
+          "工作台实现处方、库存与发药流程的全链路可视化。",
+          "提高药师发药效率，减少重复操作。",
+          "支持按库存状态优化发药调度。"
+        ],
+        scenarios: [
+          "药师使用工作台直接查看处方与库存信息。",
+          "快速定位缺药批次并安排补货。",
+          "发药状态同步给门诊和患者端。"
+        ]
+      },
+      "medical-news-followup": {
+        title: "患者随访服务与就诊记录形成闭环",
+        subtitle: "随访数据与就诊记录联通，构建完整服务链路。",
+        paragraphs: [
+          "该新闻展示了患者随访服务如何与门诊就诊记录对接。",
+          "医护团队可以基于历史记录开展个性化随访与治疗调整。",
+          "这一闭环提升了患者管理连续性和医疗服务质量。"
+        ],
+        highlights: [
+          "随访数据与就诊记录互联，构建持续管理闭环。",
+          "支持历史记录查看，方便医师精准复诊。",
+          "提高患者随访效率，减少信息断层。"
+        ],
+        scenarios: [
+          "门诊结束后自动生成随访建议并同步给医生。",
+          "医护人员可查看患者既往就诊与随访数据。",
+          "患者随访结果纳入电子病历持续管理。"
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("id");
+    const article = id && articles[id] ? articles[id] : null;
+    const titleElement = document.getElementById("title");
+    const subtitleElement = document.getElementById("subtitle");
+    const contentElement = document.getElementById("content");
+
+    function renderList(title, items) {
+      if (!items || !items.length) return "";
+      return `
+        <section class="article-section">
+          <h2>${title}</h2>
+          <div class="article-section__body">
+            <ul>${items.map((item) => `<li>${item}</li>`).join("")}</ul>
+          </div>
+        </section>
+      `;
+    }
+
+    if (!article) {
+      titleElement.textContent = "页面未找到";
+      subtitleElement.textContent = "请从首页选择一个可用的功能入口。";
+      contentElement.innerHTML = "<div class=\"fallback\">您访问的页面不存在，或链接参数无效。<br>请返回首页重新选择。</div>";
+    } else {
+      titleElement.textContent = article.title;
+      subtitleElement.textContent = article.subtitle;
+      const paragraphHtml = article.paragraphs.map((text) => `<p>${text}</p>`).join("");
+      const highlightHtml = renderList("核心亮点", article.highlights);
+      const scenarioHtml = renderList("应用场景", article.scenarios);
+      contentElement.innerHTML = paragraphHtml + highlightHtml + scenarioHtml;
+    }
+  </script>
+</body>
+</html>

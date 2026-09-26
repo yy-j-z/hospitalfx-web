@@ -104,6 +104,11 @@ export const api = {
   fetchState() {
     return request("/app/state");
   },
+  resetState() {
+    return request("/app/reset", {
+      method: "POST"
+    });
+  },
   login(payload) {
     return request("/auth/login", {
       method: "POST",
@@ -138,6 +143,11 @@ export const api = {
       method: "PUT"
     });
   },
+  checkInMedication(id) {
+    return request(`/medication-plans/${id}/check-in`, {
+      method: "PUT"
+    });
+  },
   sendConsultMessage(payload) {
     return request("/consult-messages", {
       method: "POST",
@@ -153,6 +163,12 @@ export const api = {
   updateUser(id, payload) {
     return request(`/users/${id}`, {
       method: "PUT",
+      body: JSON.stringify(payload)
+    });
+  },
+  requestAgentChat(payload) {
+    return request("/ai/agent-chat", {
+      method: "POST",
       body: JSON.stringify(payload)
     });
   },

@@ -4,6 +4,7 @@ public class PatientProfile {
     private Integer userId;
     private String patientName;
     private String gender;
+    private String phoneNumber;
     private String cardNumber;
     private String birthdate;
     private Integer age;
@@ -39,6 +40,14 @@ public class PatientProfile {
 
     public void setCardNumber(String cardNumber) {
         this.cardNumber = cardNumber;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public String getBirthdate() {

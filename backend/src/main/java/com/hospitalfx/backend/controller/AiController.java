@@ -1,6 +1,8 @@
 package com.hospitalfx.backend.controller;
 
 import com.hospitalfx.backend.dto.AiResponse;
+import com.hospitalfx.backend.dto.AgentChatRequest;
+import com.hospitalfx.backend.dto.AgentChatResponse;
 import com.hospitalfx.backend.dto.DoctorMedicationAiRequest;
 import com.hospitalfx.backend.dto.PatientAiRequest;
 import com.hospitalfx.backend.dto.RegistrationAiRequest;
@@ -34,8 +36,7 @@ public class AiController {
         @RequestHeader(value = "X-Auth-Token", required = false) String token,
         @Valid @RequestBody RegistrationAiRequest request
     ) {
-        UserAccount currentUser = authService.requireUser(token);
-        authService.requireAnyRole(currentUser, "ADMIN", "CLERK");
+        requireRolesWhenLoggedIn(token, "ADMIN", "PATIENT");
         return aiService.registrationAdvice(
             request.patientName(),
             request.gender(),
@@ -50,8 +51,7 @@ public class AiController {
         @RequestHeader(value = "X-Auth-Token", required = false) String token,
         @Valid @RequestBody PatientAiRequest request
     ) {
-        UserAccount currentUser = authService.requireUser(token);
-        authService.requireAnyRole(currentUser, "ADMIN", "PATIENT");
+        requireRolesWhenLoggedIn(token, "ADMIN", "PATIENT");
         return aiService.patientAdvice(
             request.patientName(),
             request.gender(),
@@ -65,8 +65,7 @@ public class AiController {
         @RequestHeader(value = "X-Auth-Token", required = false) String token,
         @Valid @RequestBody DoctorMedicationAiRequest request
     ) {
-        UserAccount currentUser = authService.requireUser(token);
-        authService.requireAnyRole(currentUser, "ADMIN", "DOCTOR");
+        requireRolesWhenLoggedIn(token, "ADMIN", "DOCTOR", "PHARMACIST");
         return aiService.doctorMedicationAdvice(
             request.patientName(),
             request.gender(),
@@ -74,5 +73,22 @@ public class AiController {
             request.currentDiagnosis(),
             request.symptomSummary()
         );
+    }
+
+    @PostMapping("/agent-chat")
+    public AgentChatResponse agentChat(
+        @RequestHeader(value = "X-Auth-Token", required = false) String token,
+        @RequestBody AgentChatRequest request
+    ) {
+        requireRolesWhenLoggedIn(token, "ADMIN", "DOCTOR", "PHARMACIST", "PATIENT");
+        return aiService.agentChat(request);
+    }
+
+    private void requireRolesWhenLoggedIn(String token, String... roleCodes) {
+        if (token == null || token.isBlank()) {
+            return;
+        }
+        UserAccount currentUser = authService.requireUser(token);
+        authService.requireAnyRole(currentUser, roleCodes);
     }
 }

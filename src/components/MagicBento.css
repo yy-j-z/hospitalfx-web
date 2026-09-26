@@ -1,0 +1,192 @@
+:root {
+  --magic-white: #ffffff;
+  --magic-ink: #143250;
+  --magic-muted: #55708b;
+  --magic-border: rgba(24, 77, 128, 0.14);
+  --magic-card: rgba(255, 255, 255, 0.9);
+  --magic-card-soft: rgba(248, 252, 255, 0.96);
+  --magic-shadow: 0 22px 46px rgba(29, 71, 115, 0.12);
+}
+
+.magic-bento-shell {
+  position: relative;
+  z-index: 1;
+}
+
+.card-grid {
+  display: grid;
+  gap: 0.85rem;
+  width: 100%;
+  font-size: clamp(1rem, 0.92rem + 0.4vw, 1.25rem);
+}
+
+.magic-bento-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+  width: 100%;
+  padding: 1.35rem;
+  border-radius: 26px;
+  border: 1px solid var(--magic-border);
+  background: linear-gradient(180deg, var(--magic-card) 0%, var(--magic-card-soft) 100%);
+  box-shadow: var(--magic-shadow);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-intensity: 0;
+  --glow-radius: 240px;
+}
+
+.magic-bento-card:hover,
+.magic-bento-card-active {
+  transform: translateY(-4px);
+  box-shadow: 0 28px 52px rgba(23, 86, 148, 0.18);
+  border-color: rgba(29, 112, 193, 0.24);
+}
+
+.magic-bento-card__header,
+.magic-bento-card__content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+}
+
+.magic-bento-card__header {
+  justify-content: space-between;
+}
+
+.magic-bento-card__content {
+  flex-direction: column;
+}
+
+.magic-bento-card__label {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border-radius: 999px;
+  background: rgba(26, 120, 214, 0.08);
+  color: #2560b4;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.magic-bento-card__title {
+  margin: 0 0 0.5rem;
+  color: var(--magic-ink);
+  font-size: 1.22rem;
+  font-weight: 700;
+}
+
+.magic-bento-card__description {
+  margin: 0;
+  color: var(--magic-muted);
+  font-size: 0.94rem;
+  line-height: 1.65;
+}
+
+.magic-bento-card--text-autohide .magic-bento-card__title,
+.magic-bento-card--text-autohide .magic-bento-card__description {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.magic-bento-card--text-autohide .magic-bento-card__title {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.magic-bento-card--text-autohide .magic-bento-card__description {
+  -webkit-line-clamp: 4;
+  line-clamp: 4;
+}
+
+.magic-bento-card--border-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 5px;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(
+    var(--glow-radius) circle at var(--glow-x) var(--glow-y),
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.48)) 0%,
+    rgba(var(--glow-color), calc(var(--glow-intensity) * 0.18)) 34%,
+    transparent 70%
+  );
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: 1;
+}
+
+.particle-container {
+  position: relative;
+  isolation: isolate;
+}
+
+.particle::before {
+  content: "";
+  position: absolute;
+  inset: -3px;
+  border-radius: inherit;
+  background: rgba(45, 123, 224, 0.16);
+  z-index: -1;
+}
+
+.magic-bento-ripple {
+  position: absolute;
+  border-radius: 999px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.global-spotlight {
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+
+.bento-section {
+  position: relative;
+}
+
+@media (max-width: 719px) {
+  .card-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 720px) {
+  .card-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1180px) {
+  .card-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .magic-bento-card:nth-child(1) {
+    grid-column: span 2;
+  }
+
+  .magic-bento-card:nth-child(3) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+
+  .magic-bento-card:nth-child(4) {
+    grid-column: span 2;
+  }
+}

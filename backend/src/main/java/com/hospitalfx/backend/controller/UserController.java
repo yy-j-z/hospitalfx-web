@@ -26,7 +26,12 @@ public class UserController {
     private final AppStateService appStateService;
     private final AuthService authService;
 
-    public UserController(UserRepository userRepository, DoctorRepository doctorRepository, AppStateService appStateService, AuthService authService) {
+    public UserController(
+        UserRepository userRepository,
+        DoctorRepository doctorRepository,
+        AppStateService appStateService,
+        AuthService authService
+    ) {
         this.userRepository = userRepository;
         this.doctorRepository = doctorRepository;
         this.appStateService = appStateService;
@@ -41,14 +46,17 @@ public class UserController {
     ) {
         UserAccount currentUser = authService.requireUser(token);
         authService.requireAnyRole(currentUser, "ADMIN");
+
         UserAccount user = userRepository.findById(id)
             .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "用户不存在"));
+
         if ("admin".equalsIgnoreCase(user.getUsername()) && !"ADMIN".equals(request.roleCode())) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "固定管理员账号不允许降级");
         }
 
         String doctorId = user.getDoctorId();
         String loginCode = user.getLoginCode();
+
         if ("DOCTOR".equals(request.roleCode())) {
             if (request.deptName() == null || request.deptName().isBlank() || request.registLevel() == null || request.registLevel().isBlank()) {
                 throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "医生角色需要配置科室和号别");
@@ -65,7 +73,6 @@ public class UserController {
             }
             loginCode = switch (request.roleCode()) {
                 case "ADMIN" -> loginCode != null && loginCode.startsWith("A") ? loginCode : userRepository.nextLoginCode("A");
-                case "CLERK" -> loginCode != null && loginCode.startsWith("G") ? loginCode : userRepository.nextLoginCode("G");
                 case "PHARMACIST" -> loginCode != null && loginCode.startsWith("Y") ? loginCode : userRepository.nextLoginCode("Y");
                 case "PATIENT" -> null;
                 default -> loginCode;
