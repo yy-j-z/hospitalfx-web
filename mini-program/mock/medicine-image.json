@@ -1,0 +1,12 @@
+{
+  "medicineName": "阿莫西林胶囊",
+  "specification": "0.25g*24粒",
+  "manufacturer": "示例制药有限公司",
+  "expiryDate": "2027-06",
+  "confidence": 0.42,
+  "modelVersion": "mock-0.1",
+  "warnings": [
+    "当前为联调占位结果，请接入真实识别模型。",
+    "置信度偏低，需人工核对药品名称。"
+  ]
+}

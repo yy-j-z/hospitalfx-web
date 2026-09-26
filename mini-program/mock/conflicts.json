@@ -1,0 +1,14 @@
+[
+  {
+    "leftMedicationName": "布洛芬缓释胶囊",
+    "rightMedicationName": "阿司匹林肠溶片",
+    "severity": "中风险",
+    "guidance": "可能增加胃肠道刺激"
+  },
+  {
+    "leftMedicationName": "氯雷他定片",
+    "rightMedicationName": "复方感冒灵颗粒",
+    "severity": "中风险",
+    "guidance": "存在成分叠加风险"
+  }
+]

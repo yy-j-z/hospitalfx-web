@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "medicationCode": "M001",
+    "medicationName": "布洛芬缓释胶囊",
+    "specification": "0.3g*20粒",
+    "unit": "盒",
+    "unitPrice": 28.5,
+    "stockQuantity": 42,
+    "safeStock": 12,
+    "usageNotes": "餐后服用"
+  },
+  {
+    "id": 2,
+    "medicationCode": "M002",
+    "medicationName": "阿莫西林胶囊",
+    "specification": "0.25g*24粒",
+    "unit": "盒",
+    "unitPrice": 22.0,
+    "stockQuantity": 58,
+    "safeStock": 15,
+    "usageNotes": "青霉素过敏者禁用"
+  },
+  {
+    "id": 3,
+    "medicationCode": "M003",
+    "medicationName": "氯雷他定片",
+    "specification": "10mg*12片",
+    "unit": "盒",
+    "unitPrice": 19.8,
+    "stockQuantity": 24,
+    "safeStock": 10,
+    "usageNotes": "可能出现轻度嗜睡"
+  },
+  {
+    "id": 4,
+    "medicationCode": "M004",
+    "medicationName": "复方感冒灵颗粒",
+    "specification": "10g*9袋",
+    "unit": "盒",
+    "unitPrice": 17.5,
+    "stockQuantity": 18,
+    "safeStock": 8,
+    "usageNotes": "避免重复使用"
+  },
+  {
+    "id": 5,
+    "medicationCode": "M005",
+    "medicationName": "阿司匹林肠溶片",
+    "specification": "100mg*30片",
+    "unit": "盒",
+    "unitPrice": 16.2,
+    "stockQuantity": 14,
+    "safeStock": 10,
+    "usageNotes": "胃溃疡患者慎用"
+  },
+  {
+    "id": 6,
+    "medicationCode": "M006",
+    "medicationName": "奥美拉唑肠溶胶囊",
+    "specification": "20mg*14粒",
+    "unit": "盒",
+    "unitPrice": 25.6,
+    "stockQuantity": 30,
+    "safeStock": 8,
+    "usageNotes": "晨起空腹服用"
+  }
+]

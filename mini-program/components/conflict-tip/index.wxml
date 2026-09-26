@@ -1,0 +1,9 @@
+<view wx:if="{{hasConflict}}" class="conflict-tip">
+  <view class="conflict-tip__title">药物冲突提示（{{conflicts.length}} 项）</view>
+  <view class="conflict-tip__item" wx:for="{{conflicts}}" wx:key="index">
+    <text class="conflict-tip__pair">{{item.leftMedicationName}} + {{item.rightMedicationName}}</text>
+    <text class="conflict-tip__severity">{{item.severity}}</text>
+    <text class="conflict-tip__guidance">{{item.guidance}}</text>
+  </view>
+  <view class="conflict-tip__footer">以上提示不构成用药建议，请以医生 / 药师意见为准。</view>
+</view>

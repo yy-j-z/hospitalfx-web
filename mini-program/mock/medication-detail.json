@@ -1,0 +1,53 @@
+{
+  "1": {
+    "id": 1,
+    "medicationCode": "M001",
+    "medicationName": "布洛芬缓释胶囊",
+    "specification": "0.3g*20粒",
+    "unit": "盒",
+    "unitPrice": 28.5,
+    "stockQuantity": 42,
+    "safeStock": 12,
+    "usageNotes": "餐后服用",
+    "indications": null,
+    "contraindications": null,
+    "sourceName": null,
+    "sourceUrl": null,
+    "versionLabel": null,
+    "updatedAt": null
+  },
+  "2": {
+    "id": 2,
+    "medicationCode": "M002",
+    "medicationName": "阿莫西林胶囊",
+    "specification": "0.25g*24粒",
+    "unit": "盒",
+    "unitPrice": 22.0,
+    "stockQuantity": 58,
+    "safeStock": 15,
+    "usageNotes": "青霉素过敏者禁用",
+    "indications": "用于敏感菌所致的感染",
+    "contraindications": "对青霉素过敏者禁用",
+    "sourceName": "国家药品监督管理局药品说明书",
+    "sourceUrl": "https://www.nmpa.gov.cn/",
+    "versionLabel": "2026-01",
+    "updatedAt": "2026-09-26"
+  },
+  "5": {
+    "id": 5,
+    "medicationCode": "M005",
+    "medicationName": "阿司匹林肠溶片",
+    "specification": "100mg*30片",
+    "unit": "盒",
+    "unitPrice": 16.2,
+    "stockQuantity": 14,
+    "safeStock": 10,
+    "usageNotes": "胃溃疡患者慎用",
+    "indications": null,
+    "contraindications": null,
+    "sourceName": null,
+    "sourceUrl": null,
+    "versionLabel": null,
+    "updatedAt": null
+  }
+}

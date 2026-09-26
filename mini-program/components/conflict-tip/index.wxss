@@ -1,0 +1,13 @@
+.conflict-tip {
+  margin: 0 0 24rpx; padding: 24rpx; border-radius: 16rpx;
+  background: #fff6e5; border: 2rpx solid #f0c36d;
+}
+.conflict-tip__title { font-size: 28rpx; font-weight: 600; color: #8a5a00; }
+.conflict-tip__item { margin-top: 16rpx; }
+.conflict-tip__pair { display: block; font-size: 26rpx; color: #6b4a00; }
+.conflict-tip__severity {
+  display: inline-block; margin-top: 6rpx; padding: 2rpx 12rpx;
+  font-size: 22rpx; color: #ffffff; background: #d9822b; border-radius: 8rpx;
+}
+.conflict-tip__guidance { display: block; margin-top: 6rpx; font-size: 24rpx; color: #8a6a2a; }
+.conflict-tip__footer { margin-top: 16rpx; font-size: 22rpx; color: #a08444; }

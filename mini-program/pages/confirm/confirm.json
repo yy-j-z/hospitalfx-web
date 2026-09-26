@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "确认识别结果",
+  "usingComponents": {
+    "state-view": "/components/state-view/index",
+    "conflict-tip": "/components/conflict-tip/index"
+  }
+}

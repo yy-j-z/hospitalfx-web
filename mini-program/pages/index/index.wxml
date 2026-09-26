@@ -1,0 +1,34 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero__title">今日用药</view>
+    <view class="hero__sub">{{userName}}，请按时服药</view>
+  </view>
+
+  <view class="actions">
+    <button class="btn btn--primary" bindtap="goUpload">拍照 / 相册识别药盒</button>
+    <button class="btn btn--ghost" bindtap="onRetry">刷新</button>
+  </view>
+
+  <conflict-tip hasConflict="{{hasConflict}}" conflicts="{{conflicts}}" />
+
+  <state-view state="{{state}}" emptyText="今天还没有用药计划" errorText="{{errorText}}" bind:retry="onRetry" />
+
+  <block wx:if="{{state === 'ready'}}">
+    <view class="card" wx:for="{{plans}}" wx:key="id">
+      <view class="card__head">
+        <text class="card__title">{{item.medicationName}}</text>
+        <text class="card__status">{{item.statusText}}</text>
+      </view>
+      <view class="card__row">用法用量：{{item.dosage}} · {{item.frequencyLabel}}</view>
+      <view class="card__row">服用说明：{{item.instructions}}</view>
+      <view class="card__row">上次打卡：{{item.lastCheckedInText}}</view>
+      <view class="card__row">下次提醒：{{item.nextReminderText}}</view>
+
+      <button wx:if="{{item.canCheckIn}}" class="btn btn--primary btn--small"
+              loading="{{checkingId === item.id}}" data-id="{{item.id}}" bindtap="onCheckIn">服药打卡</button>
+      <view wx:else class="card__hint">该计划为待取药状态，完成取药后才能打卡</view>
+    </view>
+  </block>
+
+  <view class="disclaimer">{{disclaimer}}</view>
+</view>

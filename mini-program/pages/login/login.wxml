@@ -1,0 +1,30 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero__title">蓉城医枢 · 患者端</view>
+    <view class="hero__sub">用药提醒 · 服药打卡 · 药盒识别 · 用药问答</view>
+  </view>
+
+  <view class="card">
+    <view class="field">
+      <view class="field__label">患者手机号</view>
+      <input class="input" type="number" maxlength="11" placeholder="请输入 11 位手机号"
+             value="{{phone}}" data-field="phone" bindinput="onInput" />
+    </view>
+
+    <view class="field">
+      <view class="field__label">密码</view>
+      <input class="input" password placeholder="请输入密码"
+             value="{{password}}" data-field="password" bindinput="onInput" />
+    </view>
+
+    <view class="tip" wx:if="{{tip}}">{{tip}}</view>
+
+    <button class="btn btn--primary" loading="{{loading}}" bindtap="onSubmit">登录</button>
+    <button class="btn btn--ghost btn--small" bindtap="onFillDemo">填入演示账号</button>
+  </view>
+
+  <view class="disclaimer">
+    本小程序只服务患者账号。医生、药师、管理员请使用 Web 工作台登录。
+    演示密码统一为 123456，账号为演示用虚构数据。
+  </view>
+</view>

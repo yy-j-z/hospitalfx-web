@@ -1,0 +1,17 @@
+<view class="state-view">
+  <view wx:if="{{state === 'loading'}}" class="state-view__box">
+    <view class="state-view__spinner"></view>
+    <text class="state-view__text">{{loadingText}}</text>
+  </view>
+
+  <view wx:elif="{{state === 'empty'}}" class="state-view__box">
+    <text class="state-view__icon">—</text>
+    <text class="state-view__text">{{emptyText}}</text>
+  </view>
+
+  <view wx:elif="{{state === 'error'}}" class="state-view__box">
+    <text class="state-view__icon">!</text>
+    <text class="state-view__text">{{errorText}}</text>
+    <button class="state-view__retry" size="mini" bindtap="onRetry">重试</button>
+  </view>
+</view>

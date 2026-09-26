@@ -1,0 +1,45 @@
+<view class="page">
+  <state-view state="{{state}}" errorText="{{errorText}}" />
+
+  <block wx:if="{{state === 'ready'}}">
+    <view class="card confidence confidence--{{confidenceLevel}}">
+      <view class="confidence__score">识别置信度：{{confidenceText}}</view>
+      <view class="confidence__text">{{confidenceTextLevel}}</view>
+      <view class="confidence__model">模型版本：{{result.modelVersion}}</view>
+    </view>
+
+    <view class="warn" wx:if="{{needConfirm}}">{{lowConfidenceTip}}</view>
+
+    <view class="card" wx:if="{{result.warnings.length}}">
+      <view class="field__label">识别提示</view>
+      <view class="warn-text" wx:for="{{result.warnings}}" wx:key="index">· {{item}}</view>
+    </view>
+
+    <conflict-tip hasConflict="{{hasConflict}}" conflicts="{{conflicts}}" />
+
+    <view class="card">
+      <view class="field__label">药品名称（可人工修改）</view>
+      <input class="input" value="{{form.medicationName}}" data-field="medicationName" bindinput="onInput" />
+      <view class="field__label mt">规格</view>
+      <input class="input" value="{{form.specification}}" data-field="specification" bindinput="onInput" />
+      <view class="field__label mt">生产厂家</view>
+      <input class="input" value="{{form.manufacturer}}" data-field="manufacturer" bindinput="onInput" />
+      <view class="field__label mt">有效期</view>
+      <input class="input" value="{{form.expiryDate}}" data-field="expiryDate" bindinput="onInput" />
+      <view class="field__label mt">用法用量</view>
+      <input class="input" value="{{form.dosage}}" data-field="dosage" bindinput="onInput" />
+      <view class="field__label mt">服用说明</view>
+      <input class="input" value="{{form.instructions}}" data-field="instructions" bindinput="onInput" />
+    </view>
+
+    <view class="confirm-box {{confirmed ? 'confirm-box--on' : ''}}" bindtap="onToggleConfirm">
+      <view class="confirm-box__mark">{{confirmed ? '✓' : ''}}</view>
+      <view class="confirm-box__text">我已人工核对药品名称，确认无误后再加入用药计划</view>
+    </view>
+
+    <button class="btn btn--primary" loading="{{submitting}}" bindtap="onSubmit">确认并加入用药计划</button>
+    <button class="btn btn--ghost" bindtap="goBack">重新识别</button>
+
+    <view class="disclaimer">{{disclaimer}}</view>
+  </block>
+</view>

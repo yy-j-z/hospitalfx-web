@@ -1,0 +1,7 @@
+{
+  "name": "rongcheng-yishu-patient-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "蓉城医枢患者端微信小程序（微信原生，无构建步骤）。此文件仅用于声明本目录为 CommonJS：仓库根 package.json 是 type=module，若没有这个声明，本目录用 require 的代码在 Node 工具链（单元测试、lint、脚本）下会被当成 ESM 直接报错。小程序本身不需要 npm install，也不参与根目录的 npm run build。",
+  "type": "commonjs"
+}

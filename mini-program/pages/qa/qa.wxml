@@ -1,0 +1,37 @@
+<view class="page">
+  <view class="hero">
+    <view class="hero__title">用药问答</view>
+    <view class="hero__sub">回答基于药品知识库，每条内容都标注来源</view>
+  </view>
+
+  <view class="search">
+    <input class="search__input" placeholder="例如：阿莫西林有什么禁忌"
+           value="{{query}}" bindinput="onInput" confirm-type="search" bindconfirm="ask" />
+    <view class="search__btn" bindtap="ask">提问</view>
+  </view>
+
+  <view class="presets">
+    <view class="presets__item" wx:for="{{presets}}" wx:key="index"
+          data-text="{{item}}" bindtap="onPreset">{{item}}</view>
+  </view>
+
+  <state-view state="{{state}}" emptyText="知识库暂时没有相关内容，请咨询医生 / 药师"
+              errorText="{{errorText}}" bind:retry="onRetry" />
+
+  <block wx:if="{{state === 'ready'}}">
+    <view class="card" wx:for="{{answers}}" wx:key="index">
+      <view class="card__head">
+        <text class="card__title">{{item.title}}</text>
+        <text class="card__status">相关度 {{item.scoreText}}</text>
+      </view>
+      <view class="answer">{{item.content}}</view>
+
+      <view class="source" wx:if="{{item.hasSource}}">
+        来源：{{item.sourceName}}（{{item.sourceUrl}}）· 版本 {{item.versionLabel}}
+      </view>
+      <view class="source source--warn" wx:else>{{noSourceTip}}</view>
+    </view>
+  </block>
+
+  <view class="disclaimer">{{disclaimer}}</view>
+</view>

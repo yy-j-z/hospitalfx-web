@@ -1,0 +1,11 @@
+.state-view { padding: 60rpx 24rpx; }
+.state-view__box { display: flex; flex-direction: column; align-items: center; }
+.state-view__spinner {
+  width: 44rpx; height: 44rpx; border-radius: 50%;
+  border: 4rpx solid #d9e2f0; border-top-color: #1e6fd9;
+  animation: state-view-spin 0.8s linear infinite;
+}
+@keyframes state-view-spin { to { transform: rotate(360deg); } }
+.state-view__icon { font-size: 48rpx; color: #b6c0d0; }
+.state-view__text { margin-top: 16rpx; font-size: 26rpx; color: #7a8699; text-align: center; line-height: 1.6; }
+.state-view__retry { margin-top: 24rpx; background: #1e6fd9; color: #ffffff; font-size: 26rpx; }

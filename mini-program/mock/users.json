@@ -1,0 +1,22 @@
+[
+  {
+    "id": 13,
+    "username": "patient_liuxiaoming",
+    "loginCode": "P013",
+    "realName": "刘小明",
+    "roleCode": "PATIENT",
+    "enabled": true,
+    "phoneNumber": "13800000012",
+    "doctorId": null
+  },
+  {
+    "id": 14,
+    "username": "patient_wangxiaofang",
+    "loginCode": "P014",
+    "realName": "王小芳",
+    "roleCode": "PATIENT",
+    "enabled": true,
+    "phoneNumber": "13800000013",
+    "doctorId": null
+  }
+]

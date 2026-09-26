@@ -71,6 +71,8 @@ hospitaFXjyy/
 │  ├─ app/main.py              服务入口与接口定义
 │  ├─ requirements.txt         依赖
 │  └─ README.md                服务说明与启动步骤
+├─ mini-program/              微信患者小程序（队友一负责；用微信开发者工具打开本目录）
+│  └─ README.md               小程序功能范围、技术边界与待确认事项
 ├─ _codex_workspace/           团队协作约定、任务分工、接口契约与阶段验收记录
 ├─ .github/                    PR 模板 + CI 工作流
 ├─ start-project.ps1           一键启动（MySQL + 后端 + 前端）
@@ -156,6 +158,26 @@ uvicorn app.main:app --host 0.0.0.0 --port 8090
 ```
 
 接口文档（Swagger UI）：<http://127.0.0.1:8090/docs>
+
+### 启动微信患者小程序（队友一）
+
+Web 端（`src/`）是医生 / 药师 / 管理员的医护工作台，患者端在 `mini-program/` 里，
+两者是同一后端的两套前端，互不替代。
+
+1. 装微信开发者工具，导入目录选 **`mini-program/`**（不是仓库根目录）。
+2. appid 用队友自己的测试号即可；没有 appid 就选「测试号」，不影响本地开发。
+3. 小程序不能访问 `localhost`：在开发者工具里勾选
+   「详情 → 本地设置 → 不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书」，
+   后端地址改 `mini-program/config/env.js` 里的 `baseUrl`。
+4. 真机预览需要用局域网 IP（手机和电脑同一 WiFi）或一个 HTTPS 后端地址。
+5. `config/env.js` 里 `useMock: true` 时不依赖后端即可走通主流程；
+   连真后端时改成 `false`，页面上不需要改动。
+6. 改完小程序跑一次自检（CI 也会执行）：
+
+```powershell
+node mini-program/scripts/check-structure.js
+node mini-program/scripts/smoke-test-mock.js
+```
 
 ---
 

@@ -1,0 +1,2 @@
+.mt { margin-top: 20rpx; }
+.hint { margin-top: 12rpx; font-size: 22rpx; color: #8a94a6; }

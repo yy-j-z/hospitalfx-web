@@ -1,0 +1,24 @@
+<view class="page">
+  <view class="card">
+    <view class="field__label">第一步：拍摄或选择药盒照片</view>
+    <view class="preview" wx:if="{{filePath}}">
+      <image class="preview__img" src="{{filePath}}" mode="aspectFit" />
+      <view class="preview__meta">已选择：{{fileSizeText}}</view>
+    </view>
+    <view class="preview preview--empty" wx:else>还没有选择图片</view>
+
+    <button class="btn btn--ghost" bindtap="onChooseImage">拍照 / 从相册选择</button>
+    <button class="btn btn--primary" loading="{{uploading}}" bindtap="onUpload">上传并识别</button>
+    <view class="tip" wx:if="{{tip}}">{{tip}}</view>
+  </view>
+
+  <view class="card">
+    <view class="field__label">第二步：核对识别结果</view>
+    <view class="field__value">识别结果会进入确认页，低置信度时必须人工核对药品名称。</view>
+  </view>
+
+  <view class="disclaimer">
+    图片仅用于药品识别，请勿上传包含患者隐私信息的照片。
+    识别结果不构成诊断或处方，请咨询医生 / 药师。
+  </view>
+</view>

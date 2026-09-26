@@ -27,3 +27,9 @@ ai-service/runs/
 ai-service/datasets/raw/
 ai-service/models/*.pt
 ai-service/models/*.onnx
+
+# WeChat mini program
+mini-program/miniprogram_npm/
+mini-program/project.private.config.json
+mini-program/uploads/
+mini-program/**/*.wxapkg

@@ -1,0 +1,38 @@
+<view class="page">
+  <state-view state="{{state}}" errorText="{{errorText}}" bind:retry="onRetry" />
+
+  <block wx:if="{{state === 'ready'}}">
+    <view class="card">
+      <view class="card__head">
+        <text class="card__title">{{detail.medicationName}}</text>
+        <text class="card__status">{{detail.medicationCode}}</text>
+      </view>
+      <view class="card__row">规格：{{detail.specification}}</view>
+      <view class="card__row">单位：{{detail.unit}} · 参考价：￥{{detail.unitPrice}}</view>
+      <view class="card__row">库存：{{detail.stockQuantity}}（安全库存 {{detail.safeStock}}）</view>
+      <view class="card__row">用药提示：{{detail.usageNotes}}</view>
+    </view>
+
+    <view class="card">
+      <view class="field__label">适应症</view>
+      <view class="field__value">{{detail.indications ? detail.indications : '待后端知识表就绪'}}</view>
+      <view class="field__label mt">禁忌</view>
+      <view class="field__value">{{detail.contraindications ? detail.contraindications : '待后端知识表就绪'}}</view>
+    </view>
+
+    <view class="card">
+      <view class="field__label">知识来源</view>
+      <block wx:if="{{hasSource}}">
+        <view class="field__value">来源机构：{{detail.sourceName}}</view>
+        <view class="field__value">来源链接：{{detail.sourceUrl}}</view>
+        <view class="field__value">版本：{{detail.versionLabel}} · 更新：{{detail.updatedAt}}</view>
+      </block>
+      <view class="field__value empty" wx:else>
+        该药品尚未关联知识库来源（队友二新建 tb_medication_knowledge 表后提供），
+        当前内容仅供参考，请咨询医生 / 药师。
+      </view>
+    </view>
+
+    <view class="disclaimer">{{disclaimer}}</view>
+  </block>
+</view>

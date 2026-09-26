@@ -1,0 +1,20 @@
+<view class="page">
+  <view class="card">
+    <view class="field__label">当前账号</view>
+    <view class="field__value">{{realName}} · {{roleText}}</view>
+    <view class="field__label mt">手机号</view>
+    <view class="field__value">{{phoneText}}</view>
+  </view>
+
+  <view class="card">
+    <view class="field__label">联调信息（排查问题用）</view>
+    <view class="field__value">后端地址：{{baseUrl}}</view>
+    <view class="field__value">mock 数据：{{useMock ? '已开启（未连后端）' : '已关闭（连后端）'}}</view>
+    <view class="hint">地址在 mini-program/config/env.js 里改，不要在页面里硬编码。</view>
+    <button class="btn btn--ghost btn--small" bindtap="onCopyBaseUrl">复制后端地址</button>
+  </view>
+
+  <button class="btn btn--primary" bindtap="onLogout">退出登录</button>
+
+  <view class="disclaimer">{{disclaimer}}</view>
+</view>

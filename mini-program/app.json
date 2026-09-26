@@ -1,0 +1,45 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/index/index",
+    "pages/upload/upload",
+    "pages/confirm/confirm",
+    "pages/medications/medications",
+    "pages/detail/detail",
+    "pages/qa/qa",
+    "pages/profile/profile"
+  ],
+  "window": {
+    "navigationBarTitleText": "蓉城医枢",
+    "navigationBarBackgroundColor": "#1e6fd9",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f4f6fa"
+  },
+  "tabBar": {
+    "color": "#8a94a6",
+    "selectedColor": "#1e6fd9",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "用药"
+      },
+      {
+        "pagePath": "pages/medications/medications",
+        "text": "药品"
+      },
+      {
+        "pagePath": "pages/qa/qa",
+        "text": "问答"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

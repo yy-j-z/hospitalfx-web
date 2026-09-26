@@ -1,0 +1,8 @@
+{
+  "navigationBarTitleText": "今日用药",
+  "enablePullDownRefresh": true,
+  "usingComponents": {
+    "state-view": "/components/state-view/index",
+    "conflict-tip": "/components/conflict-tip/index"
+  }
+}

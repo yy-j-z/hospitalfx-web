@@ -1,0 +1,26 @@
+<view class="page">
+  <view class="search">
+    <input class="search__input" placeholder="输入药品名称或编码，例如 阿莫西林 / M002"
+           value="{{keyword}}" bindinput="onInput" confirm-type="search" bindconfirm="onSearch" />
+    <view class="search__btn" bindtap="onSearch">搜索</view>
+    <view class="search__clear" wx:if="{{keyword}}" bindtap="onClear">清空</view>
+  </view>
+
+  <state-view state="{{state}}" emptyText="没有找到匹配的药品，换个关键词试试"
+              errorText="{{errorText}}" bind:retry="onRetry" />
+
+  <block wx:if="{{state === 'ready'}}">
+    <view class="count">共 {{total}} 条</view>
+    <view class="card" wx:for="{{items}}" wx:key="id" data-id="{{item.id}}" bindtap="goDetail">
+      <view class="card__head">
+        <text class="card__title">{{item.medicationName}}</text>
+        <text class="card__status">{{item.medicationCode}}</text>
+      </view>
+      <view class="card__row">规格：{{item.specification}} · 单位：{{item.unit}}</view>
+      <view class="card__row">库存：{{item.stockQuantity}} · 参考价：￥{{item.unitPrice}}</view>
+      <view class="card__row">用药提示：{{item.usageNotes}}</view>
+    </view>
+    <view class="empty-tip" wx:if="{{loadingMore}}">正在加载更多…</view>
+    <view class="empty-tip" wx:elif="{{items.length >= total}}">没有更多了</view>
+  </block>
+</view>

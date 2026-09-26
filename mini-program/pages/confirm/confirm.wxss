@@ -1,0 +1,31 @@
+.confidence { text-align: center; }
+.confidence--low { background: #fff1f0; }
+.confidence--medium { background: #fff8e8; }
+.confidence--high { background: #eefaf1; }
+.confidence__score { font-size: 36rpx; font-weight: 600; }
+.confidence__text { margin-top: 8rpx; font-size: 26rpx; color: #5b6779; }
+.confidence__model { margin-top: 8rpx; font-size: 22rpx; color: #8a94a6; }
+
+.warn {
+  margin-bottom: 24rpx; padding: 20rpx; border-radius: 12rpx;
+  background: #fff1f0; border: 2rpx solid #f0b3ae;
+  font-size: 26rpx; color: #b32b21;
+}
+.warn-text { margin-top: 8rpx; font-size: 26rpx; color: #8a6a2a; }
+
+.input {
+  margin-top: 8rpx; height: 80rpx; padding: 0 20rpx;
+  border-radius: 10rpx; background: #f4f6fa; font-size: 28rpx;
+}
+.mt { margin-top: 20rpx; }
+
+.confirm-box {
+  display: flex; align-items: center; margin-bottom: 16rpx; padding: 24rpx;
+  border-radius: 12rpx; background: #ffffff; border: 2rpx solid #d9e2f0;
+}
+.confirm-box--on { border-color: #1e6fd9; background: #eef4fd; }
+.confirm-box__mark {
+  width: 40rpx; height: 40rpx; margin-right: 16rpx; border-radius: 8rpx;
+  background: #1e6fd9; color: #ffffff; text-align: center; line-height: 40rpx; font-size: 26rpx;
+}
+.confirm-box__text { flex: 1; font-size: 26rpx; color: #33415c; }

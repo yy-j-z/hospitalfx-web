@@ -17,7 +17,7 @@
 - `main` —— 稳定、可演示版本。只接受集成负责人（你）从 `develop` 合并，其他人禁止直接推
 - `develop` —— 集成测试版本。**所有人的 Pull Request 都提到这里**
 - `feature/neural` —— 你 · 神经网络与 AI
-- `feature/android` —— 队友一 · 安卓与移动端
+- `feature/mini-program` —— 队友一 · 微信患者小程序
 - `feature/backend-medication` —— 队友二 · 后端、药品数据与知识库
 - `feature/frontend-refactor` —— 队友三 · 前端页面与联调
 
@@ -26,7 +26,7 @@
 ```powershell
 git clone https://github.com/yy-j-z/hospitalfx-web.git
 cd hospitalfx-web
-git switch -c feature/android          # 队友一；其他人换成自己的分支名
+git switch -c feature/mini-program     # 队友一；其他人换成自己的分支名
 ```
 
 ---
@@ -39,9 +39,8 @@ git switch -c feature/android          # 队友一；其他人换成自己的分
 - 集成阶段：`src/App.jsx`、`src/panels.jsx`、`src/styles.css`
 
 **队友一**
-- `src/features/mobile/**`
-- `public/manifest.json`
-- PWA / Capacitor 相关配置
+- `mini-program/**`
+- 小程序项目配置、页面、组件、网络请求和本地 mock 数据
 
 **队友二**
 - `backend/**` 全部，含 `schema.sql`、`demo-data.sql`、Controller、Service、Repository
@@ -61,7 +60,7 @@ git switch -c feature/android          # 队友一；其他人换成自己的分
 
 规则：
 
-1. 队友一、队友三**只新增独立组件**，不进去改这三个文件
+1. 队友一只修改 `mini-program/**`；队友三只新增 Web 独立组件，不进去改这三个文件
 2. 队友三负责在自己的 feature 目录里把组件导出整理好
 3. 最后由**你**统一把组件挂到 `App.jsx` 或 `panels.jsx`
 4. 样式写在各自功能目录里，例如 `src/features/medication/MedicationPanel.css`
@@ -104,7 +103,7 @@ git switch -c feature/android          # 队友一；其他人换成自己的分
 
 接口契约发布后，四个人同时开工：
 
-- **队友一**：手机布局、底部导航、PWA（先用 mock 数据）
+- **队友一**：微信患者小程序页面与交互（先用 mock 数据）
 - **队友二**：建表、药品接口、冲突检查接口、知识库接口（真实数据库）
 - **队友三**：药品百科、图片上传页、识别结果页、RAG 页面（先用 mock JSON）
 - **你**：OCR、图片识别、模型评估、`ai-service`
@@ -137,7 +136,7 @@ git push -u origin feature/自己的分支
 - 数据库能否初始化（删库重跑，验证 `schema.sql` + `demo-data.sql` 能建出完整结构）
 - 前端是否能构建（`npm run build`）
 - AI 服务是否能调用
-- 手机端是否能走完整流程
+- 微信小程序能否在开发者工具里走完整患者流程（登录 → 今日用药 → 拍照识别 → 结果确认 → 打卡）
 - 是否误提交密钥、数据库文件、模型文件
 
 验证通过后：`develop` → `main`
@@ -151,6 +150,8 @@ git push -u origin feature/自己的分支
 - 医疗回答必须展示知识来源，或明确提示「请咨询医生 / 药师」
 - 每条新增接口至少提供一个成功场景和一个失败场景的说明
 - 新增表必须同步 `schema.sql`，演示记录必须同步 `demo-data.sql`
+- 小程序必须能在微信开发者工具里走通患者主线（登录 → 今日用药 → 拍照识别 → 结果确认 → 打卡）
+- 小程序不得硬编码后端地址（只改 `config/env.js`），不得直连 `ai-service:8090`
 
 ---
 
@@ -160,7 +161,7 @@ git push -u origin feature/自己的分支
 2. 每个人使用自己的 feature 分支
 3. 禁止直接修改 `main`
 4. 不共用同一个工作目录
-5. 不同时修改 `App.jsx`、`panels.jsx`、`styles.css`
+5. 不同时修改 `App.jsx`、`panels.jsx`、`styles.css`；小程序代码只在 `mini-program/`，不混进 `src/`
 6. 数据库由队友二维护，你审核
 7. 接口字段先确定，后写代码
 8. 前端先用 mock，不等待后端
@@ -185,15 +186,17 @@ git push -u origin feature/自己的分支
 6. 先跑通 mock，再替换真模型，接口字段保持不变
 7. 最后负责集成、审核 PR、合并 `develop → main`
 
-### 队友一：安卓与移动端
+### 队友一：微信患者小程序
 
-1. 先做响应式适配：窄屏下把现有页面跑一遍，列出布局崩掉的地方
-2. 新增移动端底部导航，替代桌面侧边栏
-3. 患者侧四个页面：今日用药、服药打卡、药盒图片上传、识别结果确认
-4. 三态处理：加载中 / 上传失败 / 后端不可用，都要有可读提示
-5. 用 PWA 打包，Capacitor 打 Android APK 放第二优先
-6. 浏览器本地提醒（不做服务端推送）
-7. 不直接修改数据库，只依赖 `api-contract.md` 里已确认的接口
+1. 在 `mini-program/` 中建立独立微信小程序项目，不改写现有 React Web 系统
+2. 实现患者登录、首页与底部导航
+3. 实现今日用药、服药打卡、药盒拍照或相册选择、识别结果人工确认
+4. 实现药品搜索、药品详情、知识库问答和药物冲突提示
+5. 统一处理加载中、无数据、上传失败、识别低置信度、后端不可用五种状态
+6. 比赛第一版复用现有账号密码登录；微信 `code` 登录作为后续扩展，不阻塞主流程
+7. 小程序只调用 Spring Boot `/api/**`，禁止直接访问 `ai-service:8090`
+8. 开发阶段可使用 mock；真机联调时记录 HTTPS、合法域名和局域网地址等环境要求
+9. 不直接修改数据库，只依赖 `api-contract.md` 里已确认的接口
 
 ### 队友二：后端、药品数据与知识库接口
 
@@ -206,10 +209,15 @@ git push -u origin feature/自己的分支
 5. 用药计划补全：查询 + 新增（打卡接口已实现，**不要动**）
 6. 图片识别代理：`POST /api/ai/medicine-image` 转发到 ai-service:8090
 7. 知识库检索：`POST /api/knowledge/search`（可先返回种子数据）
-8. 所有新增表同步 `schema.sql`，演示记录同步 `demo-data.sql`，**通过 PR 提交由你审核**
-9. 禁止只在本机数据库 GUI 改表而不更新 `schema.sql`
+8. 保证 JSON 接口和 `multipart/form-data` 图片上传可同时供 Web 与微信小程序调用
+9. 比赛第一版复用现有账号密码登录；后续如接微信登录，由后端增加 `code` 换取身份的独立接口
+10. 真机或发布环境统一使用可访问的 HTTPS 后端地址，不让小程序直连 AI 服务
+11. 所有新增表同步 `schema.sql`，演示记录同步 `demo-data.sql`，**通过 PR 提交由你审核**
+12. 禁止只在本机数据库 GUI 改表而不更新 `schema.sql`
 
 ### 队友三：前端页面与联调
+
+队友三继续负责现有 React Web 医护管理端，不负责在 `mini-program/` 中重复开发患者小程序页面。
 
 1. 建立 `src/features/` 功能目录（仓库里已建好空目录，见 `src/features/README.md`）
 2. 药品百科：分类、搜索、详情、来源展示

@@ -1,0 +1,31 @@
+{
+  "answers": [
+    {
+      "title": "阿莫西林胶囊说明书",
+      "content": "适用于敏感菌所致的呼吸道、泌尿道等感染；对青霉素过敏者禁用，用药前需确认过敏史。",
+      "sourceName": "国家药品监督管理局",
+      "sourceUrl": "https://www.nmpa.gov.cn/",
+      "versionLabel": "2026-01",
+      "reviewStatus": "PENDING",
+      "score": 0.82
+    },
+    {
+      "title": "布洛芬与阿司匹林同服的注意点",
+      "content": "两药同服可能增加胃肠道刺激与出血风险，建议在医生指导下调整用药方案。",
+      "sourceName": "国家药品监督管理局",
+      "sourceUrl": "https://www.nmpa.gov.cn/",
+      "versionLabel": "2026-01",
+      "reviewStatus": "PENDING",
+      "score": 0.76
+    },
+    {
+      "title": "服药依从性提示",
+      "content": "漏服后不要自行加倍补服，应按说明书或医嘱处理，并及时咨询药师。",
+      "sourceName": null,
+      "sourceUrl": null,
+      "versionLabel": null,
+      "reviewStatus": "PENDING",
+      "score": 0.61
+    }
+  ]
+}

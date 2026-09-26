@@ -1,4 +1,9 @@
-# 队友 AI 任务提示词（第二版）
+# 队友 AI 任务提示词（第三版）
+
+> 版本变更（2026-09-26）：**队友一的任务由「安卓与移动端（PWA / Capacitor）」改为
+> 「微信患者小程序」**，分支名 `feature/android` → `feature/mini-program`，
+> 代码范围 `src/features/mobile/**` → `mini-program/**`。
+> 第二版里给队友一的提示词已废弃，请勿再转发旧版本。
 
 下面四段可以直接复制给对应队友的 AI 使用。使用前请先确认对方已经读过：
 
@@ -11,53 +16,62 @@
 
 ---
 
-## 队友一：安卓与移动端
+## 队友一：微信患者小程序
 
 ```text
-你正在参与 hospitaFXjyy（蓉城医枢）医疗用药管理项目的移动端开发。
+你正在参与 hospitaFXjyy（蓉城医枢）医疗用药管理项目的**患者端微信小程序**开发。
 
-你的分支：feature/android
+你的分支：feature/mini-program
 
 你的文件范围（只允许改这些）：
-- src/features/mobile/**
-- public/manifest.json
-- PWA / Capacitor 相关配置
+- mini-program/**（小程序项目配置、页面、组件、网络请求封装、mock 数据）
 
 禁止修改：
-- src/App.jsx、src/panels.jsx、src/styles.css（这三个是集成文件，由集成负责人统一挂载）
+- src/**、index.html、vite.config.js（React Web 医护工作台，归队友三和集成负责人）
 - backend/** 任何文件（包括 schema.sql）
-- ai-service/** 任何文件
+- ai-service/** 任何文件——你只能通过 Spring Boot 的 /api/** 间接调用，
+  禁止在小程序里直连 ai-service:8090（小程序访问不到 localhost 和内网地址）
 
 请先阅读：
-1. _codex_workspace/api-contract.md
-2. _codex_workspace/team-task-assignment.md
-3. src/features/README.md
+1. _codex_workspace/api-contract.md（**字段唯一依据**）
+2. _codex_workspace/team-task-assignment.md 的「队友一」一节
+3. mini-program/README.md
+
+技术方案已定：微信原生小程序（WXML / WXSS / JS）。不要在开发中途换成 Taro，也不要再起第二套实现。
+
+现状说明（先读，别重复造）：
+集成负责人已在 mini-program/ 里搭好骨架 —— app.json 与 tabBar、8 个页面框架、
+api/request.js 统一请求封装、mock 数据与实现、state-view / conflict-tip 组件、
+两个自检脚本，mock 模式下主流程已经能跑通。技术方案已定为**微信原生小程序**，
+不要再另起目录、不要换成 Taro。
 
 任务顺序：
-1. 窄屏适配：把现有页面在手机宽度下跑一遍，列出布局崩掉的位置。
-2. 新增移动端底部导航，替代桌面侧边栏。
-3. 患者侧四个页面：今日用药、服药打卡、药盒图片上传、识别结果确认。
-4. 统一处理加载中、上传失败、识别低置信度、后端不可用四种状态。
-5. PWA 打包；Capacitor 打 Android APK 放第二优先。
-6. 浏览器本地提醒（不做服务端推送）。
+1. 先跑通现状：用微信开发者工具打开 mini-program/，用 13800000012 / 123456 走一遍
+   登录 → 今日用药 → 打卡 → 拍照识别 → 结果确认 → 加入计划，确认与 README「当前进度」一致
+2. 按页面继续做：药品搜索与详情、知识库问答（每条必须显示来源）、我的
+3. 后端接口就绪后，把 config/env.js 的 useMock 改成 false，逐页联调并把问题记下来
+4. 补齐五种状态：加载中 / 无数据 / 上传失败 / 识别低置信度 / 后端不可用
+5. 微信 code 登录本版不做，留作后续扩展；比赛第一版用手机号 + 密码登录
+6. 每改完一块，跑一遍两条自检脚本，并更新 mini-program/README.md 的「当前进度」一节
 
-接口约定：
-- 字段一律以 _codex_workspace/api-contract.md 为准，不得自行发明字段。
-- 后端未完成前，按契约字段写 mock JSON，放在 src/features/mobile/mock/ 下。
-- 样式写在本目录内，例如 src/features/mobile/MobileNav.css。
+接口与数据约定：
+- 字段一律以 _codex_workspace/api-contract.md 为准，不得自行发明字段名。
+- 后端未完成前，按契约字段在 mini-program/mock/ 下写样例数据。
+- 后端地址集中在 mini-program/config/env.js 里配置，不要散落写在各页面里。
+- 开发者工具联调时勾选「不校验合法域名」；真机联调需要局域网 IP 或 HTTPS 地址，这点写进你的交付说明。
 
 交付内容：
-- 修改或新增的文件清单
-- 手机端页面截图或录屏说明
-- PWA / Android 启动步骤
-- npm run build 验证结果
+- 新增文件清单
+- 微信开发者工具里的页面截图或录屏（登录 → 今日用药 → 拍照识别 → 结果确认 → 打卡 这条主线）
+- 打开与运行步骤（开发者工具版本、appid 怎么填、后端地址怎么改）
 - 已知问题和后续依赖
 
 提交前检查：
 - 没有直接改 main
-- 没有碰 App.jsx / panels.jsx / styles.css
-- 没有改 backend/ 或 ai-service/
-- 已运行 npm run build
+- 没有碰 src/、backend/、ai-service/
+- 没有提交 AppSecret、患者隐私图片、project.private.config.json、node_modules
+- 跑过 node mini-program/scripts/check-structure.js 和 smoke-test-mock.js，两条都通过
+- 更新了 mini-program/README.md 的「当前进度」一节
 ```
 
 ---
@@ -215,7 +229,7 @@
 - 删库重跑，验证 schema.sql + demo-data.sql 能建出完整结构
 - npm run build 是否能过
 - AI 服务是否能被后端调用
-- 手机端是否能走完整流程
+- 微信小程序患者流程是否能在开发者工具里走通（登录 → 今日用药 → 拍照识别 → 结果确认 → 打卡）
 - 是否误提交密钥、数据库文件、模型文件
 ```
 
@@ -233,4 +247,15 @@
 6. 运行与自己模块对应的构建或测试命令
 7. 汇报修改文件、验证命令、验证结果和已知问题
 8. 提交到自己的 feature 分支并发 Pull Request 到 develop，不要直接提交 main
+9. 对照 .github/pull_request_template.md 的验证清单逐条勾选，没做过的不要勾
+   （没在开发者工具里跑过小程序就不要勾小程序那一项，没跑过 mvn test 就不要勾后端那一项）
+
+如果本次改动涉及 mini-program/，额外检查：
+- 后端地址是否只写在 mini-program/config/env.js 的 baseUrl，页面里没有硬编码 http://
+- 是否所有请求都走 mini-program/api/request.js（没有页面直接调用 wx.request / wx.uploadFile）
+- 是否只调用 Spring Boot 的 /api/**，没有直连 ai-service:8090
+- 是否误提交 AppSecret、患者隐私图片、project.private.config.json、miniprogram_npm/
+- 改了页面或配置后，是否在微信开发者工具里重新跑过一遍主线
+  （登录 → 今日用药 → 拍照识别 → 结果确认 → 打卡）
+- 是否更新了 mini-program/README.md 里的「当前进度」一节
 ```

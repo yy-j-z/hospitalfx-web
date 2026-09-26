@@ -28,3 +28,17 @@ jobs:
           java-version: 17
           cache: maven
       - run: mvn -B -f backend/pom.xml test
+
+  # 小程序是微信原生项目，没有构建步骤，所以这里只做结构和契约校验：
+  # 页面文件是否齐全、有没有硬编码后端地址、有没有绕过 api/request.js、mock 数据是否还符合契约。
+  miniprogram:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: 小程序结构自检
+        run: node mini-program/scripts/check-structure.js
+      - name: mock 契约冒烟测试
+        run: node mini-program/scripts/smoke-test-mock.js

@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "药品查询",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "state-view": "/components/state-view/index"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "药品详情",
+  "usingComponents": {
+    "state-view": "/components/state-view/index"
+  }
+}
